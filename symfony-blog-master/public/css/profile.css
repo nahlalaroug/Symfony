@@ -1,0 +1,16 @@
+.profile-container {
+  margin: 1rem;
+}
+
+i {
+  color: rgba(255, 119, 48, .8);
+}
+
+.profilepic {
+  width: 250px;
+  height: 250px;
+}
+
+a:hover {
+  color: rgba(255, 119, 48, .8);
+}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets%}
+  <link rel="stylesheet" href="../css/categories.css">
+{% endblock %}
+{% block body%}
+<body>
+<div class="cat-container">
+  <div class="section-title">
+    <h2>Les catégories </h2>
+  </div>
+<ul>
+  {% for cat in categories %}
+  <li><a  href="{{ path('category', {'id' : cat.cId}) }}">{{ cat.cTitle}}</a></li>
+{% endfor %}
+</ul>
+</div>
+</body>
+{% endblock %}

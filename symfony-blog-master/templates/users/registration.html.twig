@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block stylesheets%}
+{% endblock %}
+
+{% block body %}
+<body>
+  <div class="section-title">
+    <h2>Inscription</h2>
+  </div>
+
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-6 border-right">
+<h3> MonBlog </h3>
+<small class="text-muted">Blog participatif</small>
+<hr/>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo inventore, esse facere aliquam illo cum ab alias, ipsam placeat architecto nostrum libero veritatis maiores deserunt voluptatibus autem et dolore perspiciatis.
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates nulla voluptate, tempore at porro veniam consequuntur placeat delectus ipsam est soluta blanditiis ea, tenetur vitae maiores ipsa eum corrupti illum?
+</p>
+<p>
+Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat distinctio quos exercitationem? Non in velit unde accusamus nemo recusandae labore fugit sit officia architecto? Placeat blanditiis nemo dolorum tempore ex.
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, eos velit incidunt nam ad numquam sapiente? Nemo, commodi rem, fuga, id expedita quo totam assumenda fugit aut eum quas? Libero?
+</div>
+
+<div class="col-md-6">
+{{form_start(form)}}
+{{form_row(form.uName, {
+  'attr':{
+    'placeholder': 'Nom'
+  }
+})}}
+{{form_row(form.uPp, {
+  'attr':{
+    'placeholder': 'url photo de profil'
+  }
+})}}
+{{form_row(form.uDesc, {
+  'attr':{
+    'placeholder': 'description '
+  }
+})}}
+{{form_row(form.uMail, {
+  'attr':{
+    'placeholder': 'mail'
+  }
+})}}
+{{form_row(form.uPass, {
+  'attr':{
+    'placeholder': 'mot de passe'
+  }
+})}}
+{{form_row(form.confirm_uPass, {
+  'attr':{
+    'placeholder': 'confirmer le mot de passe'
+  }
+})}}
+
+<button type="submit" class="btn btn-warning">S'inscrire</button>
+{{form_end(form)}}
+</div>
+</div>
+</div>
+</body>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets%}
+	<link rel="stylesheet" href="../css/cards.css">
+{% endblock %}
+
+{% block body%}
+	<body>
+		<div class="allContainer">
+			<div class="section-title">
+				<h2>Liste des articles</h2>
+			</div>
+
+
+			{% for article in articles %}
+				<div class="card">
+					<div class="image-data">
+						<div class="background-image" style="background: url('{{ article.getAPic }}') center no-repeat;"></div>
+						<div class="publication-details">
+							<a class="author" href="{{ path('profile', {'id' : article.aPoster.getUId()}) }}">
+								<i class="fas fa-user"></i>
+								{{article.getAPosterName()}}</a>
+							<span class="date">
+								<i class="fas fa-calendar-alt"></i>
+								{{article.aDate|date('d/m/Y H:i:s')}}</a>
+						</div>
+					</div>
+					<div class="post-data">
+						<h1 class="title">{{article.getATitle()}}</h1>
+						<h2 class="subtitle">{{article.getACategoryString()}}</h2>
+						<p class="description">{{article.aContent|striptags|slice(0, 50) ~ '...' }}</p>
+						<div class="cta">
+							{% if app.user %}
+								<a href="{{ path('article', {'id' : article.aId, 'user' : app.user.uId }) }}">Lire plus &rarr;
+								</a>
+							{% else %}
+								<a href="{{ path('article', {'id' : article.aId, 'user' : "none" }) }}">Lire plus &rarr;
+								</a>
+
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</body>
+{% endblock %}

@@ -1,0 +1,16 @@
+.main-articles {
+  padding: 1rem;
+}
+
+.menu-crud {
+  display: ruby;
+  list-style-type: none;
+}
+
+.menu-crud a:hover {
+  color: rgba(255, 119, 48, .8);
+}
+
+a i {
+  color: rgba(255, 119, 48, .8);
+}

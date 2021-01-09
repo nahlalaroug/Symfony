@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets%}
+	<link rel="stylesheet" href="../css/article.css">
+{% endblock %}
+
+
+{% block body%}
+	<section class="main-article">
+		<div class="section-title">
+			<h2>{{ article.aTitle}}</h2>
+		</div>
+		<figure>
+			<div class="text-center">
+				<img src="{{ article.APic }}" alt="figure image" class="figure-img img-fluid ">
+			</div>
+			<figcaption class="figure-caption">catégorie
+				{{article.getACategoryString}}</figcaption>
+			<figcaption class="figure-caption">{{article.aLikescpt}}
+				<i class="fas fa-comments"></i>
+				|
+				{{article.aCmtcpt}}
+				<i class="fab fa-gratipay"></i>
+			</figcaption>
+		</figure>
+		<p class="lead">
+			{{ article.aContent | raw }}
+		</p>
+		<blockquote class="blockquote">
+			<footer class="blockquote-footer">
+				Écrit par
+				<a href="{{ path('profile', {'id' : article.aPoster.getUId()}) }}">{{ article.getAPosterName }}</a>
+				<br/>
+				le
+				{{ article.aDate | date('d/m/Y')}}
+				à
+				{{ article.aDate | date('H:i:s')}}</footer>
+		</blockquote>
+
+	</section>
+
+	<section class="comments">
+		<div>
+			<h2>Commentaires</h2>
+			{% for comment in comments %}
+				<div class="media">
+					<img src="{{ comment.coPostedby.getUPp() }}" alt="Media img" class="pp">
+					<div class="media-body">
+						<p>
+							<a href="#">{{ comment.coPostedBy.getUName() }}</a>
+							(posté le
+							{{ comment.coPostedat | date('d:m:Y à H:i:s') }}
+							)</p>
+						<p>{{ comment.coContent }}</p>
+					</div>
+					<hr/>
+				</div>
+			{% endfor %}
+			{% if app.user  %}
+				{{ form_start(commentForm) }}
+				{{ form_row(commentForm.coContent, {'attr' : {'placehoder' : 'Contenu' }})}}
+
+				<button type="submit" class="btn btn-success">
+					Commenter</button>
+
+				{{form_end(commentForm)}}
+			{% else %}
+				Vous devez être connecté pour commenter
+			{% endif %}
+
+		</section>
+	</body>
+{% endblock %}

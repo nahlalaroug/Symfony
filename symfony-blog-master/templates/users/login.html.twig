@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UsersController!{% endblock %}
+
+{% block body %}
+<body>
+<form action="{{ path('login') }}" method="post">
+<div class="form-group">
+    <input placeholder="email" type="email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" name="_username" id="" required >
+</div>
+<div class="form-group">
+    <input placeholder="password" type="password" name="_password" id="" required >
+</div>
+<div class="form-group">
+    <button type="submit" class="btn-warning">Connexion</button>
+</div>
+</form>
+</body>
+{% endblock %}

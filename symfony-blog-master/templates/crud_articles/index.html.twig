@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets%}
+  <link rel="stylesheet" href="../css/cards.css">
+  <link rel="stylesheet" href="../css/myarticles.css">
+{% endblock %}
+
+
+{% block body %}
+<body>
+<div class=main-articles>
+  <section class="main-article">
+    <div class="section-title">
+      <h2>Mes articles</h2>
+      <ul class="menu-crud">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('createarticle',  { 'id' :  app.user.uId }) }}"><i class="fas fa-plus-square"></i> Écrire un article</a>
+        </li>
+        <li class="nav-item">
+        </li>
+      </ul>
+    </div>
+        {% for article in articles %}
+        <div class="card">
+          <div class="image-data">
+              <div class="background-image" style="background: url('{{ article.getAPic }}') center no-repeat;"></div>
+              <div class="publication-details">
+                <a href="#" class="author"><i class="fas fa-user"></i>{{article.getAPosterName()}}</a>
+                <span class="date"><i class="fas fa-calendar-alt"></i>{{article.aDate|date('d/m/Y H:i:s')}}</a>
+              </div>
+          </div>
+          <div class="post-data">
+            <h1 class="title">{{article.getATitle()}}</h1>
+            <h2 class="subtitle">{{article.getACategoryString()}}</h2>
+            <p class="description">{{article.aContent|striptags|slice(0, 50) ~ '...' }}</p>
+            <a class="nav-link" href="{{ path('delarticle', { 'id' : article.aID}) }}"><i class="fas fa-trash-alt"></i> Supprimer un article</a>
+            <div class="cta"><a href="{{ path('article', {'id' : article.aId}) }}">Editer &rarr; </a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </body>
+
+{% endblock %}
